@@ -82,4 +82,38 @@ class UserTest extends TestCase
         $currentUser = $this->get("/api/user", $header);
         $currentUser->assertStatus(200);
     }
+
+    public function testRegisterFailsWithInvalidEmail()
+    {
+        $user = User::factory()->make();
+        
+        $data = [
+            'name' => $user->name,
+            'email' => "NOT A VALID EMAIL",
+            'password' => $user->password,
+            'password_confirmation' => $user->password,
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+        $this->assertSame('The given data was invalid.', $response->getData()->message);
+        $this->assertStringContainsString('The email must be a valid email address.', json_encode($response->getData()));
+    }
+
+    public function testRegisterFailsWithNoName()
+    {
+        $user = User::factory()->make();
+        
+        $data = [
+            'name' => '',
+            'email' => "testEmail@example.com",
+            'password' => $user->password,
+            'password_confirmation' => $user->password,
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+        $this->assertSame('The given data was invalid.', $response->getData()->message);
+        $this->assertStringContainsString('The name field is required.', json_encode($response->getData()));
+    }
 }
