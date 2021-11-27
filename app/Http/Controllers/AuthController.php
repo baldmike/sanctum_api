@@ -54,7 +54,7 @@ class AuthController extends Controller
             'message' => $user['email'] . ' successfully logged in'
         ];
 
-        return response($response, 201); 
+        return response($response, 200); 
     }
 
     public function logout(Request $request)
