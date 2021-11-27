@@ -116,4 +116,21 @@ class UserTest extends TestCase
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The name field is required.', json_encode($response->getData()));
     }
+
+    public function testRegisterFailsWithNoPassword()
+    {
+        $user = User::factory()->make();
+        
+        $data = [
+            'name' => 'Jerry Testerson',
+            'email' => "testEmail@example.com",
+            'password' => '',
+            'password_confirmation' => $user->password,
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+        $this->assertSame('The given data was invalid.', $response->getData()->message);
+        $this->assertStringContainsString('The password field is required.', json_encode($response->getData()));
+    }
 }
