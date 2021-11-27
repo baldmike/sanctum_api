@@ -6,21 +6,17 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserLoginRequest;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(UserRegisterRequest $request)
     {
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed'
-        ]);
-
         $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password'])
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password'])
         ]);
 
         $token = $user->createToken('beenToken')->plainTextToken;
@@ -33,22 +29,17 @@ class AuthController extends Controller
         return response($response, 201); 
     }
 
-    public function login(Request $request)
+    public function login(UserLoginRequest $request)
     {
-        $fields = $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string'
-        ]);
-
         // check if user exists
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('email', $request['email'])->first();
 
         if(!$user) {
             return Response([
                 'message' => 'That User not registered'
             ]);
         }
-        if(!Hash::check($fields['password'], $user->password)) {
+        if(!Hash::check($request['password'], $user->password)) {
             return Response([
                 'message' => 'invalid credentials'
             ], 401);
@@ -58,7 +49,8 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'message' => $user['email'] . ' successfully logged in'
         ];
 
         return response($response, 201); 
