@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserLoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -58,7 +59,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        Auth::user()->tokens()->delete();
 
         return response ([
             'message' => 'logged out'
