@@ -21,7 +21,7 @@ The project will be running at localhost:8000, but browser beware... This projec
 
 ## Routes
 
-// unprotected routes
+### unprotected routes
 ### POST /register
 * Expected params: name, email, password, password_confirmation
 ### POST /login
@@ -30,7 +30,7 @@ The project will be running at localhost:8000, but browser beware... This projec
 ### GET /products/{id}
 ### GET /products/search/{name}
 
-// protected routes - these routes require a token which can be obtained with login
+### protected routes - these routes require a token which can be obtained with login
 ### POST /logout
 ### POST /products
 ### PUT /products/{id}
