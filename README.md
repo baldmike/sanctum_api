@@ -5,6 +5,7 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 ## How do i fire this baby up?
 
 * clone project and cd into it
+* `cd sanctum_api`
 * install composer dependencies
 * `composer install`
 * copy the .env example file to a new .env 
@@ -21,18 +22,19 @@ The project will be running at localhost:8000, but browser beware... This projec
 ## Routes
 
 // unprotected routes
-* Route::post('/register', [AuthController::class, 'register']);
-* Route::post('/login', [AuthController::class, 'login']);
-
-* Route::get('/products', [ProductController::class, 'index']);
-* Route::get('/products/{id}', [ProductController::class, 'show']);
-* Route::get('/products/search/{name}', [ProductController::class, 'search']);
+### POST /register
+* Expected params: name, email, password, password_confirmation
+### POST /login
+* Expected params: email, password
+### GET /products
+### GET /products/{id}
+### GET /products/search/{name}
 
 // protected routes - these routes require a token which can be obtained with login
-* Route::post('/logout', [AuthController::class, 'logout']);    
-* Route::post('/products', [ProductController::class, 'store']);
-* Route::put('/products/{id}', [ProductController::class, 'update']);
-* Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+### POST /logout
+### POST /products
+### PUT /products/{id}
+### DELETE /products/{id}
 
 ## License
 
