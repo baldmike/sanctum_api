@@ -43,8 +43,20 @@ class ProductTest extends TestCase
 
         $response = $this->post('/api/products', $productArray, $headers);
         $response->assertStatus(201);
+    }
+
+    public function test_productDelete()
+    {
+        $token = $this->loginRandomUser()['token'];
         
+        $headers = [
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $token
+        ];
+
         $productId = Product::latest('created_at')->first()->id;
-        $this->json('delete', '/api/products/' . $productId, $headers)->assertStatus(200);
+        
+        $response = $this->delete("/api/products/{$productId}", [], $headers);
+        $response->assertStatus(200);
     }
 }
