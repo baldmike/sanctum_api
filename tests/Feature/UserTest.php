@@ -16,7 +16,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_UserIndexRoute()
     {
         $response = $this->get('/');
 
@@ -132,5 +132,21 @@ class UserTest extends TestCase
         $response->assertStatus(422);
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The password field is required.', json_encode($response->getData()));
+    }
+
+    public function testRegisterFailsWithNoPasswordConfirmation()
+    {
+        $user = User::factory()->make();
+        
+        $data = [
+            'name' => 'Jerry Testerson',
+            'email' => "testEmail@example.com",
+            'password' => 'password',
+        ];
+
+        $response = $this->json('POST', '/api/register', $data);
+        $response->assertStatus(422);
+        $this->assertSame('The given data was invalid.', $response->getData()->message);
+        $this->assertStringContainsString('The password confirmation does not match.', json_encode($response->getData()));
     }
 }
