@@ -52,9 +52,9 @@ class UserTest extends TestCase
         User::where('email', $user->email)->first()->delete();
     }
 
-    public function test_loginRandomUser()
+    public function test_loginUser()
     {
-        $response = $this->loginRandomUser();
+        $response = $this->loginUser();
         $response->assertStatus(200);
 
         $this->assertStringContainsString('token', $response->content());
@@ -72,7 +72,7 @@ class UserTest extends TestCase
 
     public function testCurrentUser()
     {
-        $response = $this->loginRandomUser();
+        $response = $this->loginUser();
         $response->assertStatus(200);
 
         $header = [];
