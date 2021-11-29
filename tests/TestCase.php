@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @return object
      */
-    public function loginRandomUser()
+    public function loginUser()
     {
         $user = User::where('email', 'test@example.com')->first();
 
@@ -55,7 +55,7 @@ abstract class TestCase extends BaseTestCase
     public function logoutUser()
     {
         // in order to logout...  we need to login and get a token
-        $response = $this->loginRandomUser();
+        $response = $this->loginUser();
 
         $header = [];
         $header['Accept'] = 'application/json';
