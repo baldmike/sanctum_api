@@ -33,6 +33,7 @@ The project will be running at localhost:8000, but browser beware... This projec
 ### protected routes - these routes require a token which can be obtained with login
 #### POST /logout
 #### POST /products
+* Expected params: name, description, price
 #### PUT /products/{id}
 #### DELETE /products/{id}
 
