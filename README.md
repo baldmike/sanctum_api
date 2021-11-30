@@ -19,6 +19,12 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 
 The project will be running at localhost:8000, but browser beware... This project has no front end, so you'll need a tool such as Postman or Insomnia to interact with it. 
 
+## Tests
+
+The `UserTest` will create a test user, `test@example.com` with a user password of `password`
+
+`./vendor/bin/phpunit`
+
 ## Routes
 
 ### unprotected routes
