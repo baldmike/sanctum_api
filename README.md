@@ -22,19 +22,19 @@ The project will be running at localhost:8000, but browser beware... This projec
 ## Routes
 
 ### unprotected routes
-### POST /register
+#### POST /register
 * Expected params: name, email, password, password_confirmation
-### POST /login
+#### POST /login
 * Expected params: email, password
-### GET /products
-### GET /products/{id}
-### GET /products/search/{name}
+#### GET /products
+#### GET /products/{id}
+#### GET /products/search/{name}
 
 ### protected routes - these routes require a token which can be obtained with login
-### POST /logout
-### POST /products
-### PUT /products/{id}
-### DELETE /products/{id}
+#### POST /logout
+#### POST /products
+#### PUT /products/{id}
+#### DELETE /products/{id}
 
 ## License
 
