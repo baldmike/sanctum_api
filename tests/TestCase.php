@@ -5,6 +5,8 @@ namespace Tests;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -28,6 +30,8 @@ abstract class TestCase extends BaseTestCase
                 'email' => 'test@example.com',
                 'password' => 'password',
                 'password_confirmation' => 'password',
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
             ];
     
             $response = $this->json('POST', '/api/register', $data);
