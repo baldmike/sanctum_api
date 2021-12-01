@@ -14,7 +14,7 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 * `cp .env.example .env`
 * generate a new Laravel key 
 * `php artisan key:generate`
-* run migrations 
+* run migrations
 * `php artisan migrate`
 * seed the database
 * `php artisan db:seed`
