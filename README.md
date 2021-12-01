@@ -32,20 +32,20 @@ The `UserTest` will create a test user, `test@example.com` with a password of `p
 ## Routes
 
 ### unprotected routes
-#### POST /register
+#### POST /api/register
 * Expected params: name, email, password, password_confirmation
-#### POST /login
+#### POST /api/login
 * Expected params: email, password
-#### GET /products
-#### GET /products/{id}
-#### GET /products/search/{name}
+#### GET /api/products
+#### GET /api/products/{id}
+#### GET /api/products/search/{name}
 
 ### protected routes - these routes require a token which can be obtained with login
-#### POST /logout
-#### POST /products
+#### POST /api/logout
+#### POST /api/products
 * Expected params: name, description, price
-#### PUT /products/{id}
-#### DELETE /products/{id}
+#### PUT /api/products/{id}
+#### DELETE /api/products/{id}
 
 ## License
 
