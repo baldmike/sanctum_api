@@ -25,20 +25,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
             'name' => 'required',
             'price' => 'required'
         ]);
 
+        // check if that product exists
         $product = Product::where('name', $request->name)->first();
         
+        // if the product doesn't exist, create it
         if(!$product){
             return Product::create($request->all());
         }
 
-        return response("This product exists.", 400);
-        
+        // the product exists, return 400
+        return response("This product exists.", 400);   
     }
 
     /**
