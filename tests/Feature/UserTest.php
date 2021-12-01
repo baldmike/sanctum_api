@@ -2,20 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_UserIndexRoute()
     {
         $response = $this->get('/');
@@ -95,6 +86,7 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
+
         $response->assertStatus(422);
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The email must be a valid email address.', json_encode($response->getData()));
@@ -112,6 +104,7 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
+
         $response->assertStatus(422);
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The name field is required.', json_encode($response->getData()));
@@ -129,15 +122,14 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
+
         $response->assertStatus(422);
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The password field is required.', json_encode($response->getData()));
     }
 
     public function testRegisterFailsWithNoPasswordConfirmation()
-    {
-        $user = User::factory()->make();
-        
+    {   
         $data = [
             'name' => 'Jerry Testerson',
             'email' => "testEmail@example.com",
@@ -145,6 +137,7 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/register', $data);
+
         $response->assertStatus(422);
         $this->assertSame('The given data was invalid.', $response->getData()->message);
         $this->assertStringContainsString('The password confirmation does not match.', json_encode($response->getData()));
