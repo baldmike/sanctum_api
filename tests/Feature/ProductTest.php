@@ -2,18 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
-use Database\Factories\ProductFactory;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductTest extends TestCase
 {
-    /**
-     * @return void
-     */
     public function test_indexRoute()
     {
         $response = $this->get('/api/products');
