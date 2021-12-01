@@ -4,6 +4,8 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 
 ## How do i fire this baby up?
 
+* make a database named 'sanctum_api'
+
 * clone project and cd into it
 * `cd sanctum_api`
 * install composer dependencies
