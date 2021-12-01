@@ -23,7 +23,7 @@ The project will be running at localhost:8000, but browser beware... This projec
 
 ## Tests
 
-The `UserTest` will create a test user, `test@example.com` with a user password of `password`
+The `UserTest` will create a test user, `test@example.com` with a password of `password`
 
 `./vendor/bin/phpunit`
 
