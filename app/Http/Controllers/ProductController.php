@@ -25,12 +25,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required',
             'price' => 'required'
         ]);
 
-        return Product::create($request->all());
+        $product = Product::where('name', $request->name)->first();
+        
+        if(!$product){
+            return Product::create($request->all());
+        }
+
+        return response("This product exists.", 400);
+        
     }
 
     /**
