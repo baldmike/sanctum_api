@@ -10,7 +10,7 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 * `cd sanctum_api`
 * install composer dependencies
 * `composer install`
-* copy the .env example file to a new .env 
+* copy the .env example file to a new .env & set db creds
 * `cp .env.example .env`
 * generate a new Laravel key 
 * `php artisan key:generate`
