@@ -20,8 +20,8 @@ class AuthController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
+            'email_verified_at' => $request['email_verified_at'],
+            'remember_token' => $request['remember_token'],
         ]);
 
         $token = $user->createToken('beenToken')->plainTextToken;
