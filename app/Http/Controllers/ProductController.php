@@ -39,7 +39,9 @@ class ProductController extends Controller
         }
 
         // the product exists, return 400
-        return response("This product exists.", 400);   
+        return Response([
+            'message' => 'That product exists.'
+        ], 400);
     }
 
     /**
