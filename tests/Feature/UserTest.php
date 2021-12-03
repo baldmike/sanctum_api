@@ -4,13 +4,13 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserTest extends TestCase
 {
     public function test_UserIndexRoute()
     {
         $response = $this->get('/');
-
         $response->assertStatus(200);
     }
 
