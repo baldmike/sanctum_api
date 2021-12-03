@@ -8,9 +8,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserLoginRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
@@ -62,6 +59,7 @@ class AuthController extends Controller
                 'message' => 'That User not registered'
             ]);
         }
+
         if(!Hash::check($request['password'], $user->password)) {
             return Response([
                 'message' => 'invalid credentials'
