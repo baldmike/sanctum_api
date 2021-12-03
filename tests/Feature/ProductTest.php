@@ -10,7 +10,6 @@ class ProductTest extends TestCase
     public function test_indexRoute()
     {
         $response = $this->get('/api/products');
-
         $response->assertStatus(200);
     }
 

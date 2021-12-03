@@ -14,6 +14,12 @@ use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
+    /**
+     * register a new user
+     *
+     * @param UserRegisterRequest $request
+     * @return Response
+     */
     public function register(UserRegisterRequest $request)
     {
         $user = User::create([
@@ -24,6 +30,12 @@ class AuthController extends Controller
             'remember_token' => $request['remember_token'],
         ]);
 
+        if(!$user) {
+            return Response([
+                'message' => 'User not created.'
+            ], 415);
+        }
+
         $token = $user->createToken('beenToken')->plainTextToken;
 
         $response = [
@@ -31,9 +43,15 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response($response, 201); 
+        return Response($response, 201);
     }
 
+    /**
+     * login a user
+     *
+     * @param UserLoginRequest $request
+     * @return Response
+     */
     public function login(UserLoginRequest $request)
     {
         // check if user exists
@@ -61,11 +79,17 @@ class AuthController extends Controller
         return response($response, 200); 
     }
 
+    /**
+     * logout the user
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response ([
+        return Response ([
             'message' => 'logged out'
         ]);
     }
