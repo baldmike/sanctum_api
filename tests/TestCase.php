@@ -44,7 +44,10 @@ abstract class TestCase extends BaseTestCase
             'scope' => ''
         ];
 
-        $response = $this->json('POST', '/api/login', $loginData);
+        $header = [];
+        $header['Accept'] = 'application/json';
+
+        $response = $this->json('POST', '/api/login', $loginData, $header);
 
         $json = json_decode($response->content());
 
@@ -56,6 +59,11 @@ abstract class TestCase extends BaseTestCase
         return $response;
     }
 
+    /**
+     * logout user
+     *
+     * @return void
+     */
     public function logoutUser()
     {
         // in order to logout...  we need to login and get a token
