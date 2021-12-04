@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
     protected $token = '';
 
     /**
-     * Log in random user
+     * Log in test user
      *
      * @return object
      */
