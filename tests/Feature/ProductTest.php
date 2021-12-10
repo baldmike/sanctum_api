@@ -37,6 +37,29 @@ class ProductTest extends TestCase
         $response->assertStatus(201);
     }
 
+    public function test_storeProductFailsWithoutName()
+    {
+        //login a user to get a token
+        $token = $this->loginUser()['token'];
+        
+        //make a random product, put it in array
+        $product = Product::factory()->make();
+        
+        $productArray = [
+            'description' => $product['description'],
+            'price' => $product['price']
+        ];
+
+        //build the necessary headers - this is a protected route, so we need token
+        $headers = [
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $token
+        ];
+
+        $response = $this->post('/api/products', $productArray, $headers);
+        $response->assertStatus(422);
+    }
+
     public function test_productDelete()
     {
         $token = $this->loginUser()['token'];
