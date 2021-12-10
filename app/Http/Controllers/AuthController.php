@@ -88,7 +88,8 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return Response ([
-            'message' => 'logged out'
+            'message' => 'logged out',
+            200
         ]);
     }
 }
