@@ -7,17 +7,17 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 * make a database named 'sanctum_api'
 
 * clone project and cd into it
-* `cd sanctum_api`
+    - `cd sanctum_api`
 * install composer dependencies
-* `composer install`
+    - `composer install`
 * copy the .env example file to a new .env & set db creds
-* `cp .env.example .env`
+    - `cp .env.example .env`
 * generate a new Laravel key 
-* `php artisan key:generate`
+    - `php artisan key:generate`
 * run migrations
-* `php artisan migrate`
+    - `php artisan migrate`
 * seed the database
-* `php artisan db:seed`
+    - `php artisan db:seed`
 
 * serve up a tasty hot API dish with `php artisan serve`
 
