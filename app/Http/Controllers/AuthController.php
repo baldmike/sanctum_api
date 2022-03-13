@@ -37,7 +37,8 @@ class AuthController extends Controller
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
+            'message' => $user['email'] . ' successfully registered.'
         ];
 
         return Response($response, 201);
