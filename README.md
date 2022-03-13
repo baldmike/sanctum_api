@@ -21,7 +21,30 @@ This is a Laravel 8 API that performs CRUD operations on a Product object. It ha
 
 * serve up a tasty hot API dish with `php artisan serve`
 
-The project will be running at localhost:8000, but browser beware... This project has no front end, so you'll need a tool such as Postman or Insomnia to interact with it. 
+--------
+
+* OR USE DOCKER!
+
+* * clone project and cd into it
+    - `cd sanctum_api`
+* install composer dependencies
+    - `composer install`
+* copy the .env example file to a new .env & set db creds
+    - `cp .env.example .env`
+* generate a new Laravel key 
+    - `php artisan key:generate`
+* add the following line to your zshrc file
+    - `alias sail='bash vendor/bin/sail'`
+* make sure you have docker desktop running and run (assuming you've properly aliased `sail`)
+    - `sail build && sail up`
+* run migrations
+    - `sail artisan migrate`
+* seed the database
+    - `sail artisan db:seed`
+* run tests to generate a user
+    - `sail phpunit` (or `sail ./vendor/bin/phpunit`)
+
+The project will be running at localhost:8000 if you used `php artisan serve` and localhost:80 if you're using Docker/Sail, but browser beware... This project has no front end, so you'll need a tool such as Postman or Insomnia to interact with it. 
 
 ## Tests
 
