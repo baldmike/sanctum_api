@@ -3,18 +3,11 @@
     <head>
         
     </head>
-    <style>
-
-        .rugged {
-            color: linear-gradient(red , yellow);
-            background-image: linear-gradient(red, yellow, green);
-            font-size: 200px;
-            text-align: center;
-        }
-
-    </style>
     <body>
-       <H1 class="rugged">API</H1>
+        <div id="app">
+            <example-component></example-component>
+        </div>
     </body>
-    
+
+    <script src="{{ mix('/js/app.js') }}"></script>
 </html>
